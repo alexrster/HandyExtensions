@@ -15,15 +15,23 @@ namespace HandyExtensions
         }
 
         public static T Require<T>(this T param, string paramName = null, string message = null)
-          where T : class
+            where T : class
         {
             if (ReferenceEquals(param, null)) throw new ArgumentNullException(paramName, message);
 
             return param;
         }
 
+        public static T Require<T>(this T param, IEnumerable<T> values, string paramName = null, string message = null)
+            where T : class
+        {
+            if (values != null && values.All(x => x != param)) throw new ArgumentNullException(paramName, message);
+
+            return param;
+        }
+
         public static T RequireNotDefault<T>(this T param, string paramName = null, string message = null)
-          where T : struct
+            where T : struct
         {
             if (default(T).Equals(param)) throw new ArgumentNullException(paramName, message);
 
