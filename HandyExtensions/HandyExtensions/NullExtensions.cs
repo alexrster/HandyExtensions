@@ -33,7 +33,7 @@ namespace HandyExtensions
 
         public static TResult NotNullOrEmpty<TResult>(this string str, Func<string, TResult> accessor, TResult defaultingTo = default(TResult))
         {
-            return !String.IsNullOrEmpty(str) ? defaultingTo : accessor.Invoke(str);
+            return !String.IsNullOrEmpty(str) ? accessor.Invoke(str) : defaultingTo;
         }
     }
 }
