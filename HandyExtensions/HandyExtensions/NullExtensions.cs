@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HandyExtensions
 {
@@ -32,6 +29,11 @@ namespace HandyExtensions
         public static bool NotNullOrEmpty(this string str)
         {
             return !String.IsNullOrEmpty(str);
+        }
+
+        public static TResult NotNullOrEmpty<TResult>(this string str, Func<string, TResult> accessor, TResult defaultingTo = default(TResult))
+        {
+            return !String.IsNullOrEmpty(str) ? defaultingTo : accessor.Invoke(str);
         }
     }
 }
